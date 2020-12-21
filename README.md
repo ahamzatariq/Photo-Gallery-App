@@ -1,4 +1,4 @@
-# aws
+# Photo Gallery App
 
 A new Flutter project.
 

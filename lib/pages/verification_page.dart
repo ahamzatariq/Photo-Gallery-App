@@ -27,15 +27,12 @@ class _VerificationPageState extends State<VerificationPage> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // Verification Code TextField
         TextField(
           controller: _verificationCodeController,
           decoration: InputDecoration(
               icon: Icon(Icons.confirmation_number),
               labelText: 'Verification code'),
         ),
-
-        // Verify Button
         FlatButton(
             onPressed: _verify,
             child: Text('Verify'),

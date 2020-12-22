@@ -4,9 +4,8 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
 class CameraPage extends StatefulWidget {
-  // 1
   final CameraDescription camera;
-  // 2
+
   final ValueChanged didProvideImagePath;
 
   CameraPage({Key key, this.camera, this.didProvideImagePath})
@@ -23,7 +22,7 @@ class _CameraPageState extends State<CameraPage> {
   @override
   void initState() {
     super.initState();
-    // 3
+
     _controller = CameraController(widget.camera, ResolutionPreset.medium);
     _initializeControllerFuture = _controller.initialize();
   }
@@ -34,7 +33,6 @@ class _CameraPageState extends State<CameraPage> {
       body: FutureBuilder<void>(
         future: _initializeControllerFuture,
         builder: (context, snapshot) {
-          // 4
           if (snapshot.connectionState == ConnectionState.done) {
             return CameraPreview(this._controller);
           } else {
@@ -42,13 +40,11 @@ class _CameraPageState extends State<CameraPage> {
           }
         },
       ),
-      // 5
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.camera), onPressed: _takePicture),
     );
   }
 
-  // 6
   void _takePicture() async {
     try {
       await _initializeControllerFuture;
@@ -65,7 +61,6 @@ class _CameraPageState extends State<CameraPage> {
     }
   }
 
-  // 7
   @override
   void dispose() {
     _controller.dispose();

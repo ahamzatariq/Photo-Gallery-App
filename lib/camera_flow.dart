@@ -20,17 +20,19 @@ class _CameraFlowState extends State<CameraFlow> {
 
   List<MaterialPage> get _pages {
     return [
-      MaterialPage(child: Placeholder()),
-      if (_shouldShowCamera)
-        MaterialPage(
-          child: CameraPage(
+      MaterialPage(
+          child: GalleryPage(
+              shouldLogOut: widget.shouldLogOut,
+              shouldShowCamera: () => _toggleCameraOpen(true))),
+      if (_shouldShowCamera) MaterialPage(child: Placeholder())
+    ];
+
+    MaterialPage(
+        child: CameraPage(
             camera: _camera,
             didProvideImagePath: (imagePath) {
               this._toggleCameraOpen(false);
-            },
-          ),
-        )
-    ];
+            }));
   }
 
   @override
